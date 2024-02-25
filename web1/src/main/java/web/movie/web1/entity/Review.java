@@ -17,14 +17,33 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(columnDefinition = "TEXT")
     String comment;
-    Double rating;
 
-    Date createAt;
-    Date updateAt;
+    Integer rating;
+    Date createdAt;
+    Date updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    Movie movie;
+
+    @PrePersist
+    void prePersist(){
+        createdAt = new Date();
+        updatedAt = new Date();
+    }
+    @PreUpdate
+    void preUpdate(){
+        updatedAt = new Date();
+    }
 
 
 }

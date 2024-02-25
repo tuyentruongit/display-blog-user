@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.movie.web1.entity.Blog;
 import web.movie.web1.entity.Movie;
+import web.movie.web1.entity.Review;
 import web.movie.web1.model.MovieType;
 import web.movie.web1.service.BlogService;
 import web.movie.web1.service.MovieService;
+import web.movie.web1.service.ReviewService;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +24,8 @@ public class WebController {
     private MovieService movieService;
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/")
     public String getHome(Model model){
@@ -45,7 +49,7 @@ public class WebController {
         model.addAttribute("pageData",pageData);
         model.addAttribute("currentPage" ,page);
         model.addAttribute("singleMovieTop" , movieService.getTopSingleMovie());
-        model.addAttribute("movieSuggestions",movieService.movieSuggestionsPageSingleMovie());
+        model.addAttribute("movieRecommend",movieService.movieRecommentPageSingleMovie());
         return "web/phim-le";
     }
 
@@ -84,6 +88,8 @@ public class WebController {
                 .findFirst()
                 .orElse(null);
 
+        List<Review> reviewList = reviewService.getReviewById(id);
+        model.addAttribute("reviewList" , reviewList);
         model.addAttribute("movieDetail",movie);
         model.addAttribute("featuredMovie" ,movieService.getFeaturedMovie());
         model.addAttribute("top3RatingMovie" , movieService.top3RatingMovie());
@@ -120,11 +126,25 @@ public class WebController {
                  .findFirst()
                  .orElse(null);
 
+
          model.addAttribute("blog" ,blog);
          model.addAttribute("top3RatingMovie" , movieService.top3RatingMovie());
         return "web/news-detail";
 
     }
+
+    @GetMapping("/log-in")
+    public String logIn (Model model){
+        return "web/log-in";
+
+    }
+    @GetMapping("/create-account")
+    public String createAccount (Model model){
+        return "web/create-account";
+
+    }
+
+
 
 
 }

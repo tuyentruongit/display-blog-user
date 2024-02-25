@@ -50,19 +50,19 @@ public class Movie {
             joinColumns = @JoinColumn(name = "id_movie"),
             inverseJoinColumns = @JoinColumn(name = "id_actor")
     )
-    Set<Actor> actorList;
+    List<Actor> actorList;
     @ManyToMany
     @JoinTable(
             name = "movie_director",
             joinColumns = @JoinColumn(name = "id_movie"),
             inverseJoinColumns = @JoinColumn(name = "id_director")
     )
-    Set<Director> directorList ;
+    List<Director> directorList ;
     @ManyToMany
     @JoinTable(
             name = "movie_genre",
             joinColumns = @JoinColumn(name = "id_movie"),
             inverseJoinColumns = @JoinColumn(name = "id_genre")
     )
-    Set<Genre> genreList;
+    List<Genre> genreList;
 }

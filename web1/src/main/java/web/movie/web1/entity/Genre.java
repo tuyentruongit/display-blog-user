@@ -19,8 +19,10 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-     String name;
-     String slug;
-    Date createAt;
-    Date updateAt;
+
+    @Column(nullable = false, unique = true)
+    String name;
+
+    @Column(nullable = false, unique = true)
+    String slug;
 }

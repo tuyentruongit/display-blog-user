@@ -21,9 +21,14 @@ public class Actor {
     Integer id;
 
     String name;
+
+    @Column(columnDefinition = "TEXT")
     String description;
+
     String avatar;
     Date birthday;
+
     Date createdAt;
     Date updatedAt;
+
 }

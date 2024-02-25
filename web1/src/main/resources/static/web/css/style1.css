@@ -143,12 +143,12 @@
     height: 80px;
 }
 .update-review a {
-    font-size: 5px;
+    font-size: 15px;
     margin-left: 20px;
     margin-right: 20px;
 }
 .delete-review a {
-    font-size: 5px;
+    font-size: 15px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -165,6 +165,14 @@
 .rating .star:hover,
 .rating .star.active {
     color: gold;
+}
+.modal-body input::placeholder {
+    padding-left: 10px; /* Điều chỉnh khoảng cách từ đỉnh input */
+}
+
+.modal-body input{
+    height: 100px;
+    border-radius: 10px;
 }
 
 

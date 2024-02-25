@@ -1,183 +1,174 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang Chủ</title>
+
+    <!-- Import Font  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- Import Css -->
     <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Trang Chủ</title>
+
 </head>
-<body class="body">
-<header>
+
+
+<body>
+<header class="header">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container ">
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                 <a class="navbar-brand" href="#">
-                    <img src="https://motchillzzz.com/_ipx/f_webp&s_200x52/logo.png" alt="Ảnh Logo">
+                    <img th:src="@{/web/logo-web.webp}" alt="Ảnh Logo">
                 </a>
-                <div class="navbar-nav">
-                    <input type="text" placeholder="Tìm kiếm ...">
+                <div class="navbar-nav search">
+                    <input class="w-100 ps-3" type="text" placeholder="Tìm Kiếm . . .">
+                    <button class="button-search btn btn-outline-none"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 <div>
-                    <a class="nav-link" href="">Đăng Nhập</a>
+                    <a class="nav-link text-decoration-none text-reset login" th:href="@{/log-in}">Đăng Nhập
+                        <i class="fa-regular fa-user"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 </header>
-<section class="py-4">
-    <div class="container ">
-        <div class="row ">
 
+<!-- List And Background Poster -->
+<section class="list-background-poster pt-4 d-flex">
+    <div class="container">
+        <div class="row">
+            <!-- list -->
             <div class="col-2">
-                <div class="list-menu h-100">
-                    <ul class="list-unstyled  ">
-                        <h4 class="ms-2">Danh Mục</h4>
-                        <li><a class="text-decoration-none text-reset" th:href="@{/}">Trang Chủ</a></li>
-                        <li><a class="text-decoration-none text-reset" th:href="@{/phim-le}">Phim Lẻ</a></li>
-                        <li><a class="text-decoration-none text-reset" th:href="@{/series-movie}">Phim Dài tập</a></li>
-                        <li><a class="text-decoration-none text-reset" th:href="@{/phim-chieu-rap}">Phim Chiếu Rạp</a></li>
-                        <li><a class="text-decoration-none text-reset" href="">Thể loại</a></li>
-                        <li><a class="text-decoration-none text-reset" href="">Quốc Gia</a></li>
-                        <li><a class="text-decoration-none text-reset" th:href="@{/tin-tuc}">Tin Tức</a></li>
+                <div class="wrap-item w-100 ">
+                    <ul class="list-unstyled ps-3 py-2">
+                        <h5 >Danh Mục</h5>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" th:href="@{/}">Trang Chủ</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" th:href="@{/phim-le}">Phim Lẻ</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" th:href="@{/series-movie}">Phim Dài tập</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" th:href="@{/phim-chieu-rap}">Phim Chiếu Rạp</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" href="">Thể Loại</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" href="">Quốc Gia</a>
+                        </li>
+                        <li class="item ms-3 py-2">
+                            <a class="text-decoration-none text-reset" th:href="@{/tin-tuc}">Tin Tức</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <!-- background-poster -->
 
             <div class="col-10">
-                <div class="row">
-                    <div class="name-page d-flex justify-content-center">
-                        <h3>Trang Chủ</h3>
-                    </div>
-                    <div class="name-page d-flex justify-content-center">
-                        <hr width="50%">
-                    </div>
-                </div>
 
                 <div class="row">
-                    <div class="col-10" th:each="moive:${posterBackground}">
-                        <div class="movie-hot">
-                            <a  class="text-reset text-decoration-none" th:href="@{/phim/{id}/{slug}  (id=${moive.id},slug=${moive.slug})}">
-                                <img class="w-100 rounded overflow-hidden img-movie-hot"  th:src="${moive.poster}" alt="">
-                                <h5 class="mt-2"><th:block th:text="${moive.title}"></th:block> </h5>
-                            </a>
-                        </div>
+                    <div class="background-poster">
+                        <a class="text-decoration-none text-reset" th:href="@{phim/{id}/{slug} (id= ${posterBackground.id} , slug=${posterBackground.slug}) } ">
+                            <img class="rounded overflow-hidden w-100 " th:src="${posterBackground.poster}" alt="">
+                            <p class="ms-2 pt-3" style="font-size: 20px; font-weight: 450;"><th:block th:text="${posterBackground.title}"></th:block></p>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <hr>
 
-</section>
-
-
-
-
-<section class="py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-10">
-
-                <div class="row">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="mb-3">Phim Lẻ </h3>
-                        <a class="text-reset" th:href="@{/phim-le}">Xem Thêm</a>
-                    </div>
-                </div>
-
-                <div class="row">
-
-
-                    <div class="col-3" th:each="movie : ${printSingleMovie}" >
-                        <div class="movie-item" >
-                            <a class="text-reset text-decoration-none" th:href="@{/phim/{id}/{slug} (id=${movie.id},slug=${movie.slug})}">
-                                <div class="movie-poster rounded overflow-hidden">
-                                    <img class="w-100 h-100" th:src="${movie.poster}" th:alt="'Ảnh Hỏng'">
-                                </div>
-                                <p class="mt-2"><th:block th:text="${movie.title}"></th:block></p>
-                                <p class="mt-2"><th:block th:text="${movie.relishYear}"></th:block> </p>
-                            </a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-
-
-
-            </div>
         </div>
     </div>
 </section>
 
-
-
-<section class="py-4">
+<!-- Các Thể Loại phim -->
+<section>
     <div class="container">
         <div class="row">
-            <div class="col-2"></div>
+            <div class="col 2"></div>
+
             <div class="col-10">
-
-                <div class="row">
-                    <div class="d-flex justify-content-between align-items-center py-2">
-                        <h3 class="mb-3">Phim Dài Tập</h3>
-                        <a class="text-reset" th:href="@{/series-movie}">Xem Thêm</a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-3" th:each="movie : ${seriesMovie}" >
-                        <div class="movie-item" >
-                            <a class="text-reset text-decoration-none" th:href="@{/phim/{id}/{slug}  (id=${movie.id},slug=${movie.slug})}">
-                                <div class="movie-poster rounded overflow-hidden">
-                                    <img class="w-100 h-100" th:src="${movie.poster}" th:alt="'Ảnh Hỏng'">
-                                </div>
-                                <p class="mt-2"><th:block th:text="${movie.title}"></th:block></p>
-                                <p class="mt-2"><th:block th:text="${movie.relishYear}"></th:block> </p>
-
-                            </a>
+                <div class="movieByType pb-5">
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+                            <h5>Phim Lẻ</h5>
+                            <a class="text-decoration-none text-reset" th:href="@{/phim-le}">Xem thêm</a>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3 " th:each="movie : ${printSingleMovie}">
+                            <div class="movie">
+                                <a class="text-decoration-none text-reset" th:href="@{phim/{id}/{slug} (id= ${movie.id} , slug=${movie.slug}) } ">
+                                    <img class="rounded overflow-hidden w-100" th:src="${movie.poster}" alt="">
+                                    <div class="infomation-movie my-2">
+                                        <p class="title-movie h-100" th:text="${movie.title}"></p>
+                                        <p class="mb-6"><th:block th:text="${movie.relishYear}"></th:block> </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
 
-                </div>
-
-
-
-
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-10">
-
-                <div class="row">
-                    <div class="d-flex justify-content-between align-items-center py-2">
-                        <h3 class="mb-3">Phim Chiếu Rạp</h3>
-                        <a class="text-reset" th:href="@{/phim-chieu-rap}">Xem Thêm</a>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-3" th:each="movie : ${theatricalMovies}" >
-                        <div class="movie-item" >
-                           <a class="text-reset text-decoration-none" th:href="@{/phim/{id}/{slug}  (id=${movie.id},slug=${movie.slug})}">
-                               <div class="movie-poster rounded overflow-hidden">
-                                   <img class="w-100 h-100" th:src="${movie.poster}" th:alt="'Ảnh Hỏng'">
-                               </div>
-                               <p class="mt-2"><th:block th:text="${movie.title}"></th:block></p>
-                               <p class="mt-2"><th:block th:text="${movie.relishYear}"></th:block> </p>
-                           </a>
+                <div class="movieByType">
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+                            <h5>Phim Dài Tập</h5>
+                            <a class="text-decoration-none text-reset" th:href="@{/series-movie}">Xem thêm</a>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 " th:each="movie : ${seriesMovie}">
+                            <div class="movie">
+                                <a class="text-decoration-none text-reset" th:href="@{phim/{id}/{slug} (id= ${movie.id} , slug=${movie.slug}) } ">
+                                    <img class="rounded overflow-hidden w-100" th:src="${movie.poster}" alt="">
+                                    <div class="infomation-movie my-2">
+                                        <p class="title-movie"><th:block th:text="${movie.title}"></th:block></p>
+                                        <p class="mb-6"><th:block th:text="${movie.relishYear}"></th:block> </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="movieByType">
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+                            <h5>Phim Chiếu Rạp</h5>
+                            <a class="text-decoration-none text-reset" th:href="@{/phim-chieu-rap}">Xem thêm</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 " th:each="movie : ${theatricalMovies}">
+                            <div class="movie">
+                                <a class="text-decoration-none text-reset" th:href="@{phim/{id}/{slug} (id= ${movie.id} , slug=${movie.slug}) } ">
+                                    <img class="rounded overflow-hidden w-100" th:src="${movie.poster}" alt="">
+                                    <div class="infomation-movie my-2">
+                                        <p class="title-movie"><th:block th:text="${movie.title}"></th:block></p>
+                                        <p class="mb-6"><th:block th:text="${movie.relishYear}"></th:block> </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -185,22 +176,22 @@
     </div>
 </section>
 
-<hr>
 
-<div class="infomation pt-4">
+<footer class="footer py-4">
     <div class="container">
         <div class="row">
-            <div class="col-6">
-
-                <div class="information-web py-4">
-                    <img src="https://motchillzzz.com/_ipx/f_webp&s_200x52/logo.png" alt="Ảnh Logo">
-
-
-                    <p class="py-2">
-                        Motchill - Xem phim Online Vietsub chất lượng cao miễn phí, nhiều thể loại phim phong phú, đặc sắc, giao diện trực quan, thuận tiện, tốc độ tải nhanh, thường xuyên cập nhật các bộ phim mới.
-                    </p>
+            <div class="col-4">
+                <div class="logo-web">
+                    <a th:href="@{/}">
+                        <img th:src="@{/web/logo-web.webp}" alt="Ảnh Logo">
+                    </a>
+                </div>
+                <div class="description-web">
+                    <p>Motchill - Xem phim Online Vietsub chất lượng cao miễn phí, nhiều thể loại phim phong phú, đặc sắc, giao diện trực quan, thuận tiện, tốc độ tải nhanh, thường xuyên cập nhật các bộ phim mới.</p>
                 </div>
             </div>
+
+
             <div class="col-2">
                 <div class="selection d-flex justify-content-center">
 
@@ -229,7 +220,6 @@
 
             <div class="col-2">
                 <div class="selection d-flex justify-content-center">
-
                     <ul class="list-unstyled">
                         <h4>Quốc Gia</h4>
                         <li>
@@ -250,10 +240,6 @@
                     </ul>
                 </div>
             </div>
-
-
-
-
             <div class="col-2">
                 <div class="selection d-flex justify-content-center">
 
@@ -279,21 +265,27 @@
                 </div>
             </div>
 
-
-
-
+            <div class="col-2">
+                <div class="selection ">
+                    <h4>Social</h4>
+                    <div class="">
+                        <a href=""><i style="color: black;" class="mx-2 fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i style="color: black;" class="mx-2 fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
 
 
 
 
         </div>
     </div>
-</div>
+</footer>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

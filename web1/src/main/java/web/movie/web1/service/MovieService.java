@@ -1,6 +1,7 @@
 package web.movie.web1.service;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MovieService  {
-    @Autowired
-    private MovieRepository movieRepository;
+    private final MovieRepository movieRepository;
 
     public List<Movie> getAllMovie(){
         return movieRepository.findMovieByStatus(true);
@@ -71,14 +72,14 @@ public class MovieService  {
 
     public List<Movie> getTopSingleMovie(){
         List<Movie> list = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Movie movie = movieRepository.findByMovieTypeAndStatusOrderByRelishYearDesc(MovieType.PHIM_LE,true).get(i);
             list.add(movie);
         }
         return list;
     }
 
-    public List<Movie>  movieSuggestionsPageSingleMovie() {
+    public List<Movie>  movieRecommentPageSingleMovie() {
         List<Movie> movieList = movieRepository.findByMovieTypeAndStatusOrderByRelishYearDesc(MovieType.PHIM_BO,true).stream()
                 .limit(4)
                 .toList();
@@ -99,7 +100,7 @@ public class MovieService  {
 
     public List<Movie> getTopSeriesMovie() {
         List<Movie> list = movieRepository.findByMovieTypeAndStatusOrderByRelishYearDesc(MovieType.PHIM_BO,true).stream()
-                .limit(3)
+                .limit(4)
                 .toList();
         return list;
     }
@@ -107,7 +108,7 @@ public class MovieService  {
 
     public List<Movie> getTheatricalMoviesTop() {
         List<Movie> list = movieRepository.findByMovieTypeAndStatusOrderByRelishYearDesc(MovieType.PHIM_CHIEU_RAP,true).stream()
-                .limit(3)
+                .limit(4)
                 .toList();
 
         return list;
